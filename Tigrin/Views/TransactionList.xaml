@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tigrin.Views.TransactionList"
+             Title="TransactionList"
+             xmlns:converter="clr-namespace:Tigrin.Models"
+             NavigationPage.HasNavigationBar="False"
+>
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/Colors.xaml"/>
+        <ResourceDictionary>
+            <converter:TransactionValueColorConverter x:Key="ValueColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout>
+        
+                <Border
+            Margin="10"
+            BackgroundColor="{StaticResource Black}"
+            Stroke="Transparent"
+            Padding="15"
+            StrokeShape="RoundRectangle 30"
+            >
+            
+            <Grid
+                ColumnDefinitions="*, 80"
+                RowDefinitions="Auto, Auto, 30, Auto, Auto"
+                >
+                
+                <Label Text="Saldo" FontSize="18" TextColor="#979797"/>
+                <Label x:Name="LabelBalance" FontSize="36" Grid.Row="1" TextColor="White"/>
+
+                <Button Text="+" Clicked="OnClickedToTransactionAdd" HorizontalOptions="Center" Grid.Column="1" Grid.RowSpan="2"
+                        FontSize="48"
+                        Padding="0"
+                        HeightRequest="54"
+                        WidthRequest="54"
+                        CornerRadius="27"
+                />
+
+                <Label  Text="Receita" Grid.Row="3" TextColor="#979797"/>
+                <Label x:Name="LabelIncome" Grid.Row="4" TextColor="White"/>
+
+                <Label Text="Despesas" Grid.Row="3" Grid.Column="1" TextColor="#979797"/>
+                <Label x:Name="LabelExpense" Grid.Row="4" Grid.Column="1" TextColor="White"/>
+            </Grid>
+        </Border>
+
+        <CollectionView x:Name="ViewTransactions">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="50, *, Auto" Padding="15">
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TappedToEdit" CommandParameter="{Binding}"/>
+                        </Grid.GestureRecognizers>
+
+                        <Border
+                            BackgroundColor="White"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            StrokeShape="RoundRectangle 20"
+                            >
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TappedToDelete" CommandParameter="{Binding}"/>
+                            </Border.GestureRecognizers>
+
+                            <Label
+                                Text="X"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontSize="20"
+                                TextColor="#000"
+                            />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"/>
+                        </VerticalStackLayout>
+
+                        <Label
+                            Grid.Column="2"
+                            Text="{Binding Value, StringFormat='{0:C}'}"
+                            TextColor="{Binding ., Converter={StaticResource ValueColorConverter}}"
+                            VerticalOptions="Center"
+                        />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
