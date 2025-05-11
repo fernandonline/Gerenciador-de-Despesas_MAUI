@@ -1,6 +1,6 @@
 # Projeto
 
-esse projeto consiste em um software de controle financeiro desenvolvido em MAUI, onde o usu·rio poder·  realizar as 4 operaÁıes principais (CRUD), sendo essas: listar, cadastrar, atualizar ou remover suas despesas e receitas.
+esse projeto consiste em um software de controle financeiro desenvolvido em MAUI, onde o usu√°rio poder√°  realizar as 4 opera√ß√µes principais (CRUD), sendo essas: listar, cadastrar, atualizar ou remover suas despesas e receitas.
 
 # Tecnologias
 
@@ -9,4 +9,4 @@ esse projeto consiste em um software de controle financeiro desenvolvido em MAUI
 - .NET 8
 - LiteDB
 
-<img width=120 src="AppExemple.png"/>
+<img width=240 src="AppExemple.png"/>
