@@ -9,4 +9,4 @@ esse projeto consiste em um software de controle financeiro desenvolvido em MAUI
 - .NET 8
 - LiteDB
 
-<img width="120" src="Tigin/AppExemple.png"/>
+<img width=120 src="AppExemple.png"/>
